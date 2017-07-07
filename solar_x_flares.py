@@ -6,11 +6,13 @@ from bs4 import BeautifulSoup
 
 
 class SolarXFlares:
+    # Класс для получения данных из http://www.sws.bom.gov.au/Solar/1/8
+    # о вспышечной активности Солнца в рентгеновских лучах
     def __init__(self, url):
         self.url = url
         self._get_html_text()
-        self.new_flare = None
         self.soup = BeautifulSoup(self.html, 'lxml')
+        self.new_flare = None
 
     def _get_html_text(self):
         r = requests.get(self.url)
@@ -29,7 +31,7 @@ class SolarXFlares:
             self.new_flare.pop()
 
     def get_result_hash(self):
-        # Возарвщает хеш результата, если хеш вернулся отличный, от того, что в базе,
+        # Возвращает хеш результата, если хеш вернулся отличный, от того, что в базе,
         # запрашиваем результат и сохраняем его новый хеш в базу
         self._get_data()
         m = hashlib.md5()
@@ -47,7 +49,6 @@ class SolarXFlares:
         # возвращает в виде dict {Name : datetime()} результат по вспышкам
         self._get_data()
         new_result_dict = {}
-        print(self.new_flare)
         elem1, elem2, elem3, elem4 = self.new_flare
         if len(self.new_flare) == 5:
             elem5 = self.new_flare[-1]
