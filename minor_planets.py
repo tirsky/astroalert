@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 URL = 'https://ssd-api.jpl.nasa.gov/scout.api'
 VMAG_LIMIT = 15
 
+
 class MinorPlanet:
     # Класс для получения данных из https://ssd-api.jpl.nasa.gov/scout.api?www=1
     # о малых телах Солнечной Системы с яркостью выше 15-й зв. величины
